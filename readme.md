@@ -1,11 +1,14 @@
 # PID Innobot
 
 ## Configuración de motores
-M4 = Izquierdo
+**M4** = Izquierdo
 
-M1 = Derecho
+**M1** = Derecho
 
 ```c++
-    digitalWrite(AIN1, LOW);
-    digitalWrite(AIN2, HIGH);
+    turnLeft(M1,M4);
+```
+
+```c++
+    turnRightz(M1,M4);
 ```

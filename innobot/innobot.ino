@@ -1,6 +1,6 @@
 #include <QTRSensors.h>
 QTRSensorsAnalog qtrrc((unsigned char[]) {
-  0, 1, 2, 2, 4, 5, 6
+  5, 4, 3, 2, 1, 0
 }, 6);
 
 //A = Izquierdo (M4)
@@ -8,7 +8,7 @@ QTRSensorsAnalog qtrrc((unsigned char[]) {
 
 unsigned int IR[6];
 
-int forward = 45;
+int forward = 50;
 float kp = .018;
 float ki = 0.00018;
 float kd = 0.15;
@@ -27,6 +27,15 @@ void loop() {
   int p = -3 * IR[0] - 2 * IR[1] - IR[2] + IR[3];
   p = p + 2 * IR[4] + 3 * IR[5];
 
+  for (int i = 0 ; i < 6 ; i++)
+  {
+    Serial.print(IR[i]);
+    Serial.print(" ");
+  }
+
+  Serial.println();
+
+  delay(200);
   i = i + p;
   d = p - p_old;
   p_old = p;
@@ -39,6 +48,7 @@ void loop() {
 
   u = kp * p + ki * i + kd * d;
   drive(forward - u, forward + u);
+  controlsalidas();
 }
 
 void drive(int speedl, int speedr)
@@ -64,6 +74,30 @@ void drive(int speedl, int speedr)
   }
 }
 
-void TestAdelante() {
-  goForward(M1, M2);
+void controlsalidas() {
+
+  qtrrc.read(IR);
+
+  if (IR[0] > 200) {
+    do {
+      qtrrc.read(IR);
+      /*motorSpeed(M1,60);
+      motorSpeed(M4,60);
+      turnRight(M1,M4);*/
+      motorsOff(M1,M4);
+    } while (IR[1] < 400);
+  } else {
+  }
+
+
+
+  if (IR[5] > 200) {
+    do {
+      qtrrc.read(IR);
+//      motorSpeed(M1,60);
+//      motorSpeed(M2,60);
+//      turnLeft(M1,M4);
+motorsOff(M1,M4);
+    } while (IR[6] < 400);
+  } else { }
 }
