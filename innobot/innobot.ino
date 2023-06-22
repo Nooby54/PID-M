@@ -78,24 +78,24 @@ void controlsalidas() {
 
   qtrrc.read(IR);
 
-  if (IR[0] > 300) {
+  if (IR[0] > 350) {
     do {
       qtrrc.read(IR);
       motorSpeed(M1,60);
       motorSpeed(M4,60);
       turnRight(M1,M4);
-    } while (IR[1] < 310);
+    } while (IR[1] < 360);
   } else {
   }
 
 
 
-  if (IR[5] > 300) {
+  if (IR[5] > 350) {
     do {
       qtrrc.read(IR);
       motorSpeed(M1,60);
       motorSpeed(M2,60);
       turnLeft(M1,M4);
-    } while (IR[6] < 310);
+    } while (IR[6] < 360);
   } else { }
 }
