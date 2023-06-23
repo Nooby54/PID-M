@@ -5,12 +5,14 @@
 1. [PID.](#pid)
     1. [QTR.](#qtr)
     2. [Variables.](#variables)
-2. [Motores.](#motores) 
+2. [Motores.](#motores)
 
 ## PID
 ### QTR
+<img src="https://i.postimg.cc/s2yjDdMg/qtr8.png" width="1148" height="218">
+
+![](https://i.postimg.cc/s2yjDdMg/qtr8.png)
 ### Variables
-Aqui
 
 ---
 ## Motores
