@@ -1,17 +1,17 @@
-# **PID Innobot**
+# PID Innobot
 
-## **Indice**
+## Indice
 ---
 1. [PID.](#pid)
     1. [QTR.](#qtr)
     2. [Variables.](#variables)
 2. [Motores.](#motores)
 
-## **PID**
-### **QTR**
+## PID
+### QTR
 ![](https://i.postimg.cc/s2yjDdMg/qtr8.png)
 
-### **Variables**
+### Variables
 
 ---
 ## Motores
