@@ -31,7 +31,8 @@ void loop() {
   p_old = p; // Actualiza el valor anterior del componente error anterior (p_old)
 
   if ((p * i) < 0) i = 0; // Corrige el overshooting - integral windup
-
+  
+  // Imprimir las velocidades de los motores calculadas por el PID
   Serial.print(forward + u);
   Serial.print(" ; ");
   Serial.println(forward - u);
