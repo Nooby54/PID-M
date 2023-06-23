@@ -45,18 +45,13 @@ motorSpeed(M1, 100);
 ```
 
 ```c++
-// Ir hacia adelante (dos motores)
-goForward(M1, M4);
-```
-
-```c++
 // Ir hacia adelante (un motor)
 motorOn(M1, FORWARD);
 ```
 
 ```c++
-// Ir hacia atrás (dos motores)
-goReverse(M1, M4);
+// Ir hacia adelante (dos motores)
+goForward(M1, M4);
 /*---------------------------*/
 motorOn(M4, FORWARD);
 motorOn(M1, FORWARD);
@@ -65,6 +60,11 @@ motorOn(M1, FORWARD);
 ```c++
 // Ir hacia atrás (un motor)
 motorOn(M1, REVERSE);
+```
+
+```c++
+// Ir hacia atrás (dos motores)
+goReverse(M1, M4);
 /*------------------------*/
 motorOn(M4, REVERSE);
 motorOn(M1, REVERSE);
