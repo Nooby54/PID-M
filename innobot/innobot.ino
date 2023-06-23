@@ -1,9 +1,9 @@
 #include <QTRSensors.h>
 QTRSensorsAnalog qtrrc((unsigned char[]) {
   0, 1, 2, 2, 4, 5, 6
-}, 6);
+}, 6); //Pin de los sensores
 
-unsigned int IR[6];
+unsigned int IR[6]; //Cantidad de sensores
 
 int forward = 70;  // Velocidad hacia adelante
 float kp = 0.018;  // Constante proporcional del PID
@@ -13,22 +13,22 @@ int p, d;  // Variables utilizadas en el PID
 float i = 0;  // Variable integral del PID
 float p_old = 0;  // Valor anterior de la variable p
 int u;  // Variable de control del PID
-int ContadorInterseccion = 0;
+int ContadorInterseccion = 0; // Variable para saber en qué intersección está.
 
 void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
-  qtrrc.read(IR);
+  qtrrc.read(IR); // Función de la librería para leer los valores de cada sensor, para leer cada sensor es con IR[x]
 
   // Cálculo del valor de p mediante una combinación lineal de los sensores
   int p = -3 * IR[0] - 2 * IR[1] - IR[2] + IR[3];
   p = p + 2 * IR[4] + 3 * IR[5]; // integrar error
 
-  i = i + p;
-  d = p - p_old;
-  p_old = p;
+  i = i + p; // Actualiza la acumulación de la componente integral (I) 
+  d = p - p_old; // Calcula la componente derivativa (D)
+  p_old = p; // Actualiza el valor anterior del componente error anterior (p_old)
 
   if ((p * i) < 0) i = 0; // corrige el overshooting - integral windup
 
@@ -36,8 +36,8 @@ void loop() {
   Serial.print(" ; ");
   Serial.println(forward - u);
 
-  u = kp * p + ki * i + kd * d;
-  drive(forward - u, forward + u);
+  u = kp * p + ki * i + kd * d; // Calcula la salida del controlador PID en función de las componentes P, I y D
+  drive(forward - u, forward + u); // Función que controla las velocidades de cada motor con el PID
   controlsalidas();
   intersecciones();
 }
