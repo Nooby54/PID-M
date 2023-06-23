@@ -64,3 +64,5 @@ indica que hay dos o más formas de realizar la misma acción
     motorOn(M1, REVERSE);
     motorOn(M4, FORWARD);
 ```
+
+> "Si usted no cacharrea no va a ser un duro en esto" Kevin Elías Yurgaky
