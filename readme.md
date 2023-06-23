@@ -11,11 +11,13 @@
 ### QTR
 ![](https://i.postimg.cc/s2yjDdMg/qtr8.png)
 
+Conectar los pines `2 3 4 5 6 7` a los pines análogos del Innobot en el siguiente orden respectivamente `A0 A1 A2 A3 A4 A5`
+
 ### Variables
 
 ---
 ## Motores
-A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE.](https://pygmalion.tech/software/)
+A continuación se describe la ubicación de los motores y los códigos para que estos funcionen en [Pygmalion IDE.](https://pygmalion.tech/software/)
 
 Cuando el codigo este separado por `/*----------------------------*/` indica que hay dos o más formas de realizar la misma acción.
 
