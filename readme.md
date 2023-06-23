@@ -70,6 +70,5 @@ Cuando el codigo este separado por `/*----------------------------*/` indica que
     motorOn(M4, FORWARD);
 ```
 ---
-
 > "Los que dicen que es imposible no deberían molestar ni interrumpir a los que lo estamos haciendo"
 > Thomas Alva Edinson
