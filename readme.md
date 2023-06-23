@@ -5,8 +5,8 @@
 A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE](https://pygmalion.tech/software/)
 
 <center> <h3><b>Ubicación</b></h3> </center>
-**M4** = Izquierdo
 
+**M4** = Izquierdo <br>
 **M1** = Derecho
 
 ```c++
