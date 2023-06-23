@@ -1,5 +1,3 @@
-Aquí tienes el texto corregido:
-
 # PID Innobot
 
 ## Índice
