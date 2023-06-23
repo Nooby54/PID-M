@@ -1,21 +1,20 @@
-# PID Innobot
+# **PID Innobot**
 
-## Indice
+## **Indice**
 ---
 1. [PID.](#pid)
     1. [QTR.](#qtr)
     2. [Variables.](#variables)
 2. [Motores.](#motores)
 
-## PID
-### QTR
-<img src="https://i.postimg.cc/s2yjDdMg/qtr8.png" width="1148" height="218">
-
+## **PID**
+### **QTR**
 ![](https://i.postimg.cc/s2yjDdMg/qtr8.png)
-### Variables
+
+### **Variables**
 
 ---
-## Motores
+## **Motores**
 A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE.](https://pygmalion.tech/software/)
 
 Cuando el codigo este separado por `/*----------------------------*/` indica que hay dos o más formas de realizar la misma acción.
