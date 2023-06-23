@@ -2,10 +2,10 @@
 
 ## Indice
 ---
-1. [PID](#pid)
-    1. [QTR](#qtr)
-    2. [Variables](#variables)
-2. [Motores](#motores) 
+1. [PID.](#pid)
+    1. [QTR.](#qtr)
+    2. [Variables.](#variables)
+2. [Motores.](#motores) 
 
 ## PID
 ### QTR
@@ -14,10 +14,9 @@ Aqui
 
 ---
 ## Motores
-A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE](https://pygmalion.tech/software/).
+A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE.](https://pygmalion.tech/software/)
 
-Cuando el codigo este separado por `/*----------------------------*/`
-indica que hay dos o más formas de realizar la misma acción
+Cuando el codigo este separado por `/*----------------------------*/` indica que hay dos o más formas de realizar la misma acción.
 
 ### Ubicación
 
