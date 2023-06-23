@@ -65,4 +65,5 @@ indica que hay dos o más formas de realizar la misma acción
     motorOn(M4, FORWARD);
 ```
 
-> "Si usted no cacharrea no va a ser un duro en esto" Kevin Elías Yurgaky
+> "Los que dicen que es imposible no deberían molestar ni interrumpir a los que lo estamos haciendo"
+> Thomas Alva Edinson
