@@ -5,9 +5,6 @@ QTRSensorsAnalog qtrrc((unsigned char[]) {
 
 unsigned int IR[6];
 
-// siguelíneas con algoritmo PID
-// utiliza 6 sensores en la parte frontal Pololu QTR8-RC
-
 int forward = 70;  // Velocidad hacia adelante
 float kp = 0.018;  // Constante proporcional del PID
 float ki = 0.00018;  // Constante integral del PID
@@ -16,30 +13,18 @@ int p, d;  // Variables utilizadas en el PID
 float i = 0;  // Variable integral del PID
 float p_old = 0;  // Valor anterior de la variable p
 int u;  // Variable de control del PID
-
 int ContadorInterseccion = 0;
 
 void setup() {
-
   Serial.begin(9600);
-
 }
 
-void loop()
-{
+void loop() {
   qtrrc.read(IR);
 
+  // Cálculo del valor de p mediante una combinación lineal de los sensores
   int p = -3 * IR[0] - 2 * IR[1] - IR[2] + IR[3];
   p = p + 2 * IR[4] + 3 * IR[5]; // integrar error
-
-  //  for (int i=0 ; i<8 ; i++)
-  //  {
-  //    Serial.print(IR[i]);
-  //    Serial.print(" ");
-  //  }
-  //
-  //  Serial.println();
-  //  delay(200);
 
   i = i + p;
   d = p - p_old;
@@ -57,34 +42,29 @@ void loop()
   intersecciones();
 }
 
-void drive(int speedl, int speedr)
-{
-
+void drive(int speedl, int speedr) {
+  // Control de los motores para avanzar o retroceder con diferentes velocidades
   if (speedl > 0) {
     motorOn(M4, FORWARD);
-
     motorSpeed(M4, constrain(speedl, 0, forward));
-
   } else {
     motorOn(M4, REVERSE);
-
     motorSpeed(M4, constrain(-speedl, 0, forward));
   }
+
   if (speedr > 0) {
     motorOn(M1, FORWARD);
-
     motorSpeed(M1, constrain(speedr, 0, forward));
   } else {
     motorOn(M1, REVERSE);
-
     motorSpeed(M4, constrain(-speedr, 0, forward));
   }
 }
 
 void controlsalidas() {
-
   qtrrc.read(IR);
 
+  // Control de las salidas en base a los valores de los sensores
   if (IR[0] > 300) {
     do {
       qtrrc.read(IR);
@@ -93,9 +73,8 @@ void controlsalidas() {
       turnRight(M4, M1);
     } while (IR[2] < 400);
   } else {
+    // ...
   }
-
-
 
   if (IR[5] > 300) {
     do {
@@ -104,36 +83,28 @@ void controlsalidas() {
       motorSpeed(M2, 60);
       turnLeft(M4, M1);
     } while (IR[4] < 400);
-  } else { }
+  } else {
+    // ...
+  }
 }
 
-void TestAdelante()
-{
-  goForward(M1, M2);
-}
-
-
-void intersecciones()
-{
+void intersecciones() {
   qtrrc.read(IR);
-  if (IR[5] > 600 && IR[4] > 600 && IR[3] > 600)
-  {
+
+  // Lógica para detectar intersecciones y realizar acciones específicas
+  if (IR[5] > 600 && IR[4] > 600 && IR[3] > 600) {
     ContadorInterseccion += 1;
 
-    switch (ContadorInterseccion)
-    {
+    switch (ContadorInterseccion) {
       case 1:
         forward = 60;
         motorSpeed(M1, 50);
         motorSpeed(M4, 50);
         motorsOff(M1, M4);
         delay(200);
-
         goForward(M1, M4);
         delay(100);
-
-        do
-        {
+        do {
           motorSpeed(M1, 50);
           motorSpeed(M4, 50);
           qtrrc.read(IR);
@@ -159,12 +130,10 @@ void intersecciones()
         motorOn(M1, REVERSE);
         motorOn(M4, FORWARD);
         delay(400);
-        do
-        {
+        do {
           qtrrc.read(IR);
           motorSpeed(M1, 45);
           motorSpeed(M4, 45);
-
           motorOn(M1, REVERSE);
           motorOn(M4, FORWARD);
         } while (IR[4] < 250 && IR[3] < 250);
@@ -172,6 +141,7 @@ void intersecciones()
         delay(100);
         forward = 70;
         break;
+
       case 3:
         motorsOff(M1, M4);
         delay(1000);
@@ -179,28 +149,31 @@ void intersecciones()
         motorSpeed(M4, 45);
         goForward(M1, M4);
         delay(50);
-
         motorSpeed(M1, 45);
         motorSpeed(M4, 45);
         motorOn(M4, REVERSE);
         motorOn(M1, FORWARD);
         delay(300);
-        do
-        {
+        do {
           qtrrc.read(IR);
           motorSpeed(M1, 45);
           motorSpeed(M4, 45);
-
           motorOn(M4, REVERSE);
           motorOn(M1, FORWARD);
         } while (IR[2] < 200 && IR[3] < 200);
         forward = 80;
         break;
-      default:
 
+      default:
+        // Acciones a realizar en caso de que no se cumpla ningún caso anterior
         break;
     }
   }
 }
 
-//Copiado por DG y Jaider, asesorado por Kevin Yurgaky
+void TestAdelante() {
+  goForward(M1, M2);
+}
+
+
+//Escrito por Daniel Godoy y Jaider Valencia, asesorados por Kevin Yurgaky y comentado por ChatGPT
