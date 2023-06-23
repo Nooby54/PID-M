@@ -1,7 +1,6 @@
 # PID Innobot
 
 ## Indice
----
 1. [PID.](#pid)
     1. [QTR.](#qtr)
         1. [Librerias.](Librerias)
