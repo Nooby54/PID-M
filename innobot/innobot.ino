@@ -1,7 +1,7 @@
 #include <QTRSensors.h>
 QTRSensorsAnalog qtrrc((unsigned char[]) {
   0, 1, 2, 2, 4, 5, 6
-}, 6); //Pin de los sensores
+}, 6); //Pines de los sensores
 
 unsigned int IR[6]; //Cantidad de sensores
 
@@ -24,13 +24,13 @@ void loop() {
 
   // Cálculo del valor de p mediante una combinación lineal de los sensores
   int p = -3 * IR[0] - 2 * IR[1] - IR[2] + IR[3];
-  p = p + 2 * IR[4] + 3 * IR[5]; // integrar error
+  p = p + 2 * IR[4] + 3 * IR[5]; // Integrar error
 
   i = i + p; // Actualiza la acumulación de la componente integral (I) 
   d = p - p_old; // Calcula la componente derivativa (D)
   p_old = p; // Actualiza el valor anterior del componente error anterior (p_old)
 
-  if ((p * i) < 0) i = 0; // corrige el overshooting - integral windup
+  if ((p * i) < 0) i = 0; // Corrige el overshooting - integral windup
 
   Serial.print(forward + u);
   Serial.print(" ; ");
@@ -176,4 +176,6 @@ void TestAdelante() {
 }
 
 
-//Escrito por Daniel Godoy y Jaider Valencia, asesorados por Kevin Yurgaky y comentado por ChatGPT
+//Escrito por Daniel Godoy y Jaider Valencia
+//Asesorados por Kevin Yurgaky
+//Comentado por ChatGPT con correciones menores por parte de Jaider Valencia y Daniel Godoy
