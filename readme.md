@@ -2,11 +2,18 @@
 
 ## Indice
 ---
-1. [Motores](#motores)
-2. [PID](#pid)
+1. [PID](#pid)
+    1. [QTR](#qtr)
+    2. [Variables](#variables)
+2. [Motores](#motores) 
 
+## PID
+### QTR
+### Variables
+Aqui
+
+---
 ## Motores
-
 A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE](https://pygmalion.tech/software/).
 
 Cuando el codigo este separado por `/*----------------------------*/`
@@ -56,7 +63,3 @@ indica que hay dos o más formas de realizar la misma acción
     motorOn(M1, REVERSE);
     motorOn(M4, FORWARD);
 ```
-
----
-
-## PID
