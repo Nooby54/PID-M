@@ -14,7 +14,7 @@ Utiliza la librería [QTR Sensors by Pololu](https://github.com/pololu/qtr-senso
 
 ![Sensor QTR](https://i.postimg.cc/s2yjDdMg/qtr8.png)
 
-Conecta los pines `2, 3, 4, 5, 6 y 7` a los pines analógicos del Innobot en el siguiente orden respectivamente: `A0`, `A1`, `A2`, `A3`, `A4` y `A5` (por confirmar). Conecta el pin `Vcc` a `5V` del Innobot y el pin `GND` a `GND` del Innobot.
+Conecta los pines `2`, `3`, `4`, `5`, `6` y `7` a los pines analógicos del Innobot en el siguiente orden respectivamente: `A0`, `A1`, `A2`, `A3`, `A4` y `A5` (por confirmar). Conecta el pin `Vcc` a `5V` del Innobot y el pin `GND` a `GND` del Innobot.
 
 ### Variables
 
