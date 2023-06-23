@@ -28,7 +28,7 @@ float i = 0;  // Variable integral del PID
 float p_old = 0;  // Valor anterior de la variable p
 int u;  // Variable de control del PID
 ```
-
+---
 ## Motores
 A continuación se describe la ubicación de los motores y se proporcionan los códigos necesarios para que estos funcionen en [Pygmalion IDE](https://pygmalion.tech/software/).
 
