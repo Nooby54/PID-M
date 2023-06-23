@@ -49,6 +49,7 @@ indica que hay dos o más formas de realizar la misma acción
 /*----------------------------*/
     motorOn(M4, REVERSE);
     motorOn(M1, REVERSE);
+```
 ```c++
 //Para tomar a la izquierda
     turnLeft(M4,M1);
