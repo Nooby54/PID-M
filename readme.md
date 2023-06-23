@@ -2,7 +2,8 @@
 
 ## Indice
 ---
-1. [Motores](##motores')
+1. [Motores](#motores)
+2. [PID](#pid)
 
 ## Motores
 
@@ -58,4 +59,4 @@ indica que hay dos o más formas de realizar la misma acción
 
 ---
 
-#
+## PID
