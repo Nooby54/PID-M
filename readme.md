@@ -1,10 +1,10 @@
-<center> <h1><b>PID Innobot</b></h1> </center>
+# PID Innobot
 
-<center> <h2><b>Configuración de motores</b></h2> </center>
+## Configuración de motores
 
 A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE](https://pygmalion.tech/software/)
 
-<center> <h3><b>Ubicación</b></h3> </center>
+### Ubicación
 
 **M4** = Izquierdo <br>
 **M1** = Derecho
