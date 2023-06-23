@@ -14,7 +14,7 @@
 ### **Variables**
 
 ---
-## **Motores**
+## Motores
 A continuación se describe la ubicación de los motores y los codigos para que estos funcionen en [Pygmalion IDE.](https://pygmalion.tech/software/)
 
 Cuando el codigo este separado por `/*----------------------------*/` indica que hay dos o más formas de realizar la misma acción.
