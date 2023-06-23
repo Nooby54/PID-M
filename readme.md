@@ -4,11 +4,15 @@
 ---
 1. [PID.](#pid)
     1. [QTR.](#qtr)
+        1. [Librerias.](Librerias)
+        2. [Conexiones.](#conexiones)
     2. [Variables.](#variables)
 2. [Motores.](#motores)
 
 ## PID
 ### QTR
+#### Librerias
+#### Conexiones
 ![](https://i.postimg.cc/s2yjDdMg/qtr8.png)
 
 Conectar los pines `2 3 4 5 6 7` a los pines análogos del Innobot en el siguiente orden respectivamente `A0 A1 A2 A3 A4 A5`
