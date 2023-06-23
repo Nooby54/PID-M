@@ -59,7 +59,7 @@ motorOn(M1, FORWARD);
 ```c++
 // Ir hacia atrás (dos motores)
 goReverse(M1, M4);
-/*-------------------------------*/
+/*---------------------------*/
 motorOn(M4, FORWARD);
 motorOn(M1, FORWARD);
 ```
@@ -67,7 +67,7 @@ motorOn(M1, FORWARD);
 ```c++
 // Ir hacia atrás (un motor)
 motorOn(M1, REVERSE);
-/*----------------------------*/
+/*------------------------*/
 motorOn(M4, REVERSE);
 motorOn(M1, REVERSE);
 ```
@@ -75,7 +75,7 @@ motorOn(M1, REVERSE);
 ```c++
 // Girar a la izquierda
 turnLeft(M4, M1);
-/*-----------------------*/
+/*-------------------*/
 motorOn(M4, REVERSE);
 motorOn(M1, FORWARD);
 ```
@@ -83,7 +83,7 @@ motorOn(M1, FORWARD);
 ```c++
 // Girar a la derecha
 turnRight(M4, M1);
-/*----------------------*/
+/*-----------------*/
 motorOn(M1, REVERSE);
 motorOn(M4, FORWARD);
 ```
