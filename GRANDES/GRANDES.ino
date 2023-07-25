@@ -70,7 +70,7 @@ void loop()
         intersecciones2();
     }*/
 
-  forward = 70;
+  forward = 80;
 
   ControlSalidas();
   InterseccionesSinCarga();
@@ -147,26 +147,24 @@ void controlsalidaslleno() {
   qtrrc.read(IR);
 
   // Control de las salidas en base a los valores de los sensores
-  if (IR[0] > 300) {
+  if (IR[0] > 350) {
     do {
       qtrrc.read(IR);
       motorSpeed(M1, 35);
       motorSpeed(M4, 80);
       turnRight(M4, M1);
-    } while (IR[2] < 400);
+    } while (IR[1] < 350);
   } else {
-    // ...
   }
 
-  if (IR[5] > 300) {
+  if (IR[5] > 350) {
     do {
       qtrrc.read(IR);
       motorSpeed(M1, 80);
-      motorSpeed(M4, 35);
+      motorSpeed(M4, 350);
       turnLeft(M4, M1);
-    } while (IR[4] < 400);
+    } while (IR[4] < 350);
   } else {
-    // ...
   }
 }
 
@@ -227,6 +225,7 @@ void InterseccionesSinCarga()
         break;
 
       case 3:
+        digitalWrite(led, HIGH);
         motorSpeed(M1, 70);
         motorSpeed(M4, 70);
         motorSpeed(M3, 80);
@@ -243,24 +242,22 @@ void InterseccionesSinCarga()
         delay(300);
         motorSpeed(M1, 60);
         motorSpeed(M4, 60);
-        motorOn(M1, REVERSE);
-        motorOn(M4, FORWARD);
-        delay(500);
+        motorOn(M4, REVERSE);
+        motorOn(M1, FORWARD);
+        delay(300);
         do {
           qtrrc.read(IR);
           motorSpeed(M1, 60);
           motorSpeed(M4, 60);
-          motorOn(M1, REVERSE);
-          motorOn(M4, FORWARD);
-        } while (IR[2] < 300 || IR[3] < 300);
-        turnRight(M1, M4);
-        delay(200);
-        motorsOff(M1, M4);
-        delay(200);
+          motorOn(M4, REVERSE);
+          motorOn(M1, FORWARD);
+        } while (IR[2] < 200 && IR[3] < 200);
         forward = forward;
+        digitalWrite(led, LOW);
         break;
 
       case 4:
+        digitalWrite(led, HIGH);
         digitalWrite(led, LOW);
         motorsOff(M1, M4);
         delay(100);
@@ -282,9 +279,10 @@ void InterseccionesSinCarga()
 
           motorOn(M4, REVERSE);
           motorOn(M1, FORWARD);
-        } while (IR[2] < 500 || IR[3] < 500);
+        } while (IR[2] < 200 && IR[3] < 200);
         motorSpeed(M1, 75);
         motorSpeed(M4, 75);
+        digitalWrite(led, LOW);
         break;
 
       default:
