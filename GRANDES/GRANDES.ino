@@ -56,24 +56,21 @@ void loop()
   // HIGH when it's open, and LOW when it's pressed. Turn on pin 13 when the
   // button's pressed, and off when it's not:
   u = kp * p + ki * i + kd * d;
-  /* if (sensorVal == HIGH) {
 
-       forward=65;
+  if (sensorVal == HIGH) {
 
-       ControlSalidas();
-       InterseccionesSinCarga();
-    } else {
+    forward = 65;
 
-        forward=90;
+    ControlSalidas();
+    InterseccionesSinCarga();
+  } else {
 
-        controlsalidaslleno();
-        intersecciones2();
-    }*/
+    forward = 85;
 
-  forward = 80;
+    controlsalidaslleno();
+    InterseccionesConCarga();
+  }
 
-  ControlSalidas();
-  InterseccionesSinCarga();
   drive(forward - u, forward + u);
   //vista();
 
@@ -150,8 +147,8 @@ void controlsalidaslleno() {
   if (IR[0] > 350) {
     do {
       qtrrc.read(IR);
-      motorSpeed(M1, 35);
-      motorSpeed(M4, 80);
+      motorSpeed(M1, 45);
+      motorSpeed(M4, 70);
       turnRight(M4, M1);
     } while (IR[1] < 350);
   } else {
@@ -160,8 +157,8 @@ void controlsalidaslleno() {
   if (IR[5] > 350) {
     do {
       qtrrc.read(IR);
-      motorSpeed(M1, 80);
-      motorSpeed(M4, 350);
+      motorSpeed(M1, 75);
+      motorSpeed(M4, 40);
       turnLeft(M4, M1);
     } while (IR[4] < 350);
   } else {
@@ -195,10 +192,10 @@ void InterseccionesSinCarga()
           qtrrc.read(IR);
           turnRight(M4, M1);
         } while (IR[2] < 300 && IR[3] < 300);
+
         turnRight(M1, M4);
         delay(200);
-        motorsOff(M1, M4);
-        delay(200);
+
 
         forward = forward;
         digitalWrite(led, LOW);
@@ -230,10 +227,10 @@ void InterseccionesSinCarga()
         motorSpeed(M4, 70);
         motorSpeed(M3, 80);
         motorsOff(M1, M4);
-        motorOn(M3, REVERSE);
+        motorOn(M3, FORWARD);
         delay(700);
         motorOff(M3);
-        motorOn(M3, FORWARD);
+        motorOn(M3, REVERSE);
         delay(600);
 
         motorsOff(M1, M4);
@@ -298,58 +295,171 @@ void intersecciones2() {
   qtrrc.read(IR);
 
   // Lógica para detectar intersecciones y realizar acciones específicas
-  if (IR[2] > 300 && IR[4] > 300 && IR[3] > 300) {
+  if (IR[5] > 200 && IR[3] > 200)
     ContadorInterseccion += 1;
 
-    switch (ContadorInterseccion) {
-      case 1:
-        forward = forward;
-        motorSpeed(M1, forward);
-        motorSpeed(M4, forward);
-        motorsOff(M1, M4);
-        delay(500);
+  switch (ContadorInterseccion) {
+    case 1:
+      digitalWrite(led, HIGH);
+      forward = forward;
+      motorSpeed(M1, 70);
+      motorSpeed(M4, 70);
+      motorsOff(M1, M4);
+      delay(200);
+      goForward(M1, M4);
+      delay(70);
+      do {
+        motorSpeed(M1, 60);
+        motorSpeed(M4, 60);
+        qtrrc.read(IR);
+        turnRight(M4, M1);
+      } while (IR[2] < 300 && IR[3] < 300);
+
+      turnRight(M1, M4);
+      delay(200);
+
+
+      forward = forward;
+      digitalWrite(led, LOW);
+      break;
+
+    case 2:
+      digitalWrite(led, HIGH);
+      motorsOff(M1, M4);
+      delay(200);
+
+      motorSpeed(M1, 70);
+      motorSpeed(M4, 70);
+
+      goForward(M1, M4);
+      delay(100);
+
+      do {
+        qtrrc.read(IR);
+        motorSpeed(M1, 80);
+        motorSpeed(M4, 80);
+        turnLeft(M4, M1);
+      } while (IR[3] < 250);
+      digitalWrite(led, LOW);
+      break;
+
+    case 3:
+      digitalWrite(led, HIGH);
+      motorSpeed(M1, 70);
+      motorSpeed(M4, 70);
+      motorSpeed(M3, 90);
+      motorsOff(M1, M4);
+      motorOn(M3, FORWARD);
+      delay(700);
+      motorOff(M3);
+      delay(600);
+
+      for (int i = 0; i < 30; i++) {
+        motorSpeed(M1, 80);
+        motorSpeed(M4, 80);
+        goReverse(M1, M4);
+        delay(40);
         goForward(M1, M4);
-        delay(100);
+        delay(70);
+      }
+
+      digitalWrite(led, LOW);
+      break;
+
+
+  }
+}
+
+
+void InterseccionesConCarga()
+{
+  qtrrc.read(IR); // read raw sensor values
+
+  //if (IR[4] > 100 && IR[3] > 100)
+  if (IR[5] > 150 && IR[3] > 150)
+  {
+    ContadorInterseccion += 1;
+
+
+    switch (ContadorInterseccion)
+    {
+      case 1:
+        digitalWrite(led, HIGH);
+        forward = forward;
         motorSpeed(M1, 70);
         motorSpeed(M4, 70);
-
-        turnRight(M4, M1);
+        motorsOff(M1, M4);
         delay(200);
+        goForward(M1, M4);
+        delay(70);
         do {
-          motorSpeed(M1, 70);
-          motorSpeed(M4, 70);
+          motorSpeed(M1, 60);
+          motorSpeed(M4, 60);
           qtrrc.read(IR);
           turnRight(M4, M1);
-        } while (IR[2] < 200 && IR[3] < 200);
-        motorsOff(M1, M4);
-        delay(250);
-        forward = 80;
+        } while (IR[2] < 300 && IR[3] < 300);
+
+        turnRight(M1, M4);
+        delay(200);
+
+
+        forward = forward;
+        digitalWrite(led, LOW);
         break;
 
       case 2:
-        motorSpeed(M1, forward);
-        motorSpeed(M4, forward);
+        digitalWrite(led, HIGH);
         motorsOff(M1, M4);
-        motorSpeed(M3, 100);
+        delay(200);
+
+        motorSpeed(M1, 40);
+        motorSpeed(M4, 40);
+
+        goForward(M1, M4);
+        delay(100);
+
+        do {
+          qtrrc.read(IR);
+          motorSpeed(M1, 80);
+          motorSpeed(M4, 80);
+          turnLeft(M4, M1);
+        } while (IR[3] < 250);
+        digitalWrite(led, LOW);
+        break;
+
+      case 3:
+        digitalWrite(led, HIGH);
+        motorSpeed(M1, 70);
+        motorSpeed(M4, 70);
+        motorSpeed(M3, 90);
+        motorsOff(M1, M4);
         motorOn(M3, FORWARD);
-        delay(490);
+        delay(1000);
         motorOff(M3);
-        for (int i = 0; i < 60; i++) {
+
+
+        for (int i = 0; i < 50; i++) {
           motorSpeed(M1, 70);
           motorSpeed(M4, 70);
-          goReverse(M1, M4);
-          delay(60);
+
           goForward(M1, M4);
-          delay(180);
+          delay(100);
+          goReverse(M1, M4);
+          delay(80);
+
         }
-        forward = forward;
+
+        digitalWrite(led, LOW);
         break;
 
 
       default:
-        // Acciones a realizar en caso de que no se cumpla ningún caso anterior
+
         break;
+
+
     }
   }
 }
+
 
