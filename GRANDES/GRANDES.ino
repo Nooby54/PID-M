@@ -282,7 +282,7 @@ void InterseccionesSinCarga()
 
 
     }
-  } else if ((IR[5] < 300 && IR[3] < 300 && IR[4] < 300) && (IR[2] > 300 && IR[1] > 300 && IR[0] > 300) && ContadorInterseccion == 3) {
+  } else if ((IR[5] < 100 && IR[3] < 150) && (IR[2] > 300 && IR[0] > 300) && ContadorInterseccion == 3) {
     ContadorInterseccion += 1;
 
 
