@@ -65,7 +65,7 @@ void loop()
     InterseccionesSinCarga();
   } else {
 
-    forward = 90;
+    forward = 80;
 
     controlsalidaslleno();
     InterseccionesConCarga();
@@ -170,7 +170,7 @@ void InterseccionesSinCarga()
   qtrrc.read(IR); // read raw sensor values
 
   //if (IR[4] > 100 && IR[3] > 100)
-  if (IR[5] > 500 && IR[3] > 500)
+  if (IR[5] > 300 && IR[3] > 300)
   {
     ContadorInterseccion += 1;
 
@@ -187,8 +187,8 @@ void InterseccionesSinCarga()
         goForward(M1, M4);
         delay(70);
         do {
-          motorSpeed(M1, 60);
-          motorSpeed(M4, 60);
+          motorSpeed(M1, 70);
+          motorSpeed(M4, 70);
           qtrrc.read(IR);
           motorOn(M4, FORWARD);
           motorOn(M1, REVERSE);
@@ -202,24 +202,25 @@ void InterseccionesSinCarga()
         motorsOff(M1, M4);
         delay(200);
 
-        motorSpeed(M1, 70);
-        motorSpeed(M4, 70);
+        motorOn(M1, REVERSE);
+        motorOn(M4, REVERSE);
+        delay(80);
 
-        goForward(M1, M4);
-        delay(100);
-        turnLeft(M4, M1);
-        delay(200);
-        goForward(M1, M4);
-        delay(200);
+        motorSpeed(M1, 80);
+        motorSpeed(M4, 60);
 
+        motorOn(M1, FORWARD);
+        motorOn(M4, REVERSE);
+        delay(200);
         do {
           qtrrc.read(IR);
-          motorSpeed(M1, 70);
-          motorSpeed(M4, 70);
-          turnLeft(M4, M1);
+          motorSpeed(M1, 80);
+          motorSpeed(M4, 60);
+          motorOn(M1, FORWARD);
+          motorOn(M4, REVERSE);
         } while (IR[5] < 300 && IR[4] < 300);
         turnLeft(M1, M4);
-        delay(200);
+        delay(150);
         digitalWrite(led, LOW);
         break;
 
@@ -261,14 +262,14 @@ void InterseccionesSinCarga()
         forward = forward;
         motorSpeed(M1, 70);
         motorSpeed(M4, 70);
-        goForward(M1,M4);
+        goForward(M1, M4);
         delay(200);
         motorOn(M1, FORWARD);
         motorOn(M4, REVERSE);
         delay(300);
         do {
-          motorSpeed(M1, 60);
-          motorSpeed(M4, 60);
+          motorSpeed(M1, 70);
+          motorSpeed(M4, 70);
           qtrrc.read(IR);
           motorOn(M1, FORWARD);
           motorOn(M4, REVERSE);
@@ -284,27 +285,27 @@ void InterseccionesSinCarga()
 
     }
   }
-  else if(IR[2] > 300 && IR[0] > 300 && ContadorInterseccion == 3)
+  else if (IR[2] > 300 && IR[0] > 300 && ContadorInterseccion == 3)
   {
- 
-        motorSpeed(M1, 70);
-        motorSpeed(M4, 70);
-        goForward(M1,M4);
-        delay(200);
-        motorOn(M4, FORWARD);
-        motorOn(M1, REVERSE);
-        delay(300);
-        do {
-          motorSpeed(M1, 60);
-          motorSpeed(M4, 60);
-          qtrrc.read(IR);
-          motorOn(M4, FORWARD);
-          motorOn(M1, REVERSE);
-        } while (IR[2] < 300 && IR[3] < 300);
+
+    motorSpeed(M1, 70);
+    motorSpeed(M4, 70);
+    goForward(M1, M4);
+    delay(200);
+    motorOn(M4, FORWARD);
+    motorOn(M1, REVERSE);
+    delay(300);
+    do {
+      motorSpeed(M1, 70);
+      motorSpeed(M4, 70);
+      qtrrc.read(IR);
+      motorOn(M4, FORWARD);
+      motorOn(M1, REVERSE);
+    } while (IR[2] < 300 && IR[3] < 300);
   }
   else
   {
-    
+
   }
 }
 void intersecciones2() {
@@ -395,7 +396,7 @@ void InterseccionesConCarga()
   qtrrc.read(IR); // read raw sensor values
 
   //if (IR[4] > 100 && IR[3] > 100)
-  if (IR[5] > 500 && IR[3] > 500)
+  if (IR[5] > 300 && IR[3] > 300)
   {
     ContadorInterseccion += 1;
 
@@ -405,10 +406,10 @@ void InterseccionesConCarga()
       case 1:
         digitalWrite(led, HIGH);
         forward = forward;
-        motorSpeed(M1, 80);
-        motorSpeed(M4, 80);        
+        motorSpeed(M1, 70);
+        motorSpeed(M4, 70);
         goForward(M1, M4);
-        delay(180);
+        delay(170);
         do {
           motorSpeed(M1, 80);
           motorSpeed(M4, 80);
@@ -421,26 +422,25 @@ void InterseccionesConCarga()
         break;
 
       case 2:
-        digitalWrite(led, HIGH);        
-
-        motorSpeed(M1, 80);
-        motorSpeed(M4, 80);
-
-        goForward(M1, M4);
-        delay(300);
-        turnLeft(M4, M1);
+        digitalWrite(led, HIGH);
+        motorsOff(M1, M4);
         delay(200);
-        goForward(M1, M4);
-        delay(350);
 
+        motorSpeed(M1, 70);
+        motorSpeed(M4, 50);
+
+        motorOn(M1, FORWARD);
+        motorOn(M4, REVERSE);
+        delay(200);
         do {
           qtrrc.read(IR);
-          motorSpeed(M1, 90);
-          motorSpeed(M4, 90);
-          turnLeft(M4, M1);
+          motorSpeed(M1, 80);
+          motorSpeed(M4, 50);
+          motorOn(M1, FORWARD);
+          motorOn(M4, REVERSE);
         } while (IR[5] < 300 && IR[4] < 300);
         turnLeft(M1, M4);
-        delay(50);
+        delay(150);
         digitalWrite(led, LOW);
         break;
 
@@ -478,5 +478,3 @@ void InterseccionesConCarga()
     }
   }
 }
-
-
