@@ -38,6 +38,7 @@ Cuando el código esté separado por `/*----------------------------*/`, indica 
 
 - **M4:** Motor izquierdo
 - **M1:** Motor derecho
+- **M3:** Motor de compuerta
 
 ```c++
 // Cambiar velocidades
