@@ -59,7 +59,7 @@ void loop()
 
   if (sensorVal == HIGH) {
 
-    forward = 60;
+    forward = 70;
 
     ControlSalidas();
     InterseccionesSinCarga();
@@ -202,6 +202,9 @@ void InterseccionesSinCarga()
         motorsOff(M1, M4);
         delay(200);
 
+        goForward(M1,M4);
+        delay(80);
+        
         motorSpeed(M1, 70);
         motorSpeed(M4, 50);
 
@@ -256,6 +259,8 @@ void InterseccionesSinCarga()
 
         digitalWrite(led, HIGH);
         forward = forward;
+        motorsOff(M1,M4);
+        delay(400);        
         motorSpeed(M1, 70);
         motorSpeed(M4, 70);
         goForward(M1, M4);
