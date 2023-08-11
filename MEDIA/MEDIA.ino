@@ -59,7 +59,7 @@ void loop()
 
   if (sensorVal == HIGH) {
 
-    forward = 70;
+    forward = 65;
 
     ControlSalidas();
     InterseccionesSinCarga();
@@ -170,7 +170,7 @@ void InterseccionesSinCarga()
   qtrrc.read(IR); // read raw sensor values
 
   //if (IR[4] > 100 && IR[3] > 100)
-  if (IR[5] > 300 && IR[3] > 300)
+  if (IR[5] > 370 && IR[3] > 370)
   {
     ContadorInterseccion += 1;
 
@@ -202,12 +202,11 @@ void InterseccionesSinCarga()
         motorsOff(M1, M4);
         delay(200);
 
-        motorOn(M1, REVERSE);
-        motorOn(M4, REVERSE);
-        delay(80);
-
-        motorSpeed(M1, 80);
-        motorSpeed(M4, 60);
+        goForward(M1,M4);
+        delay(40);
+        
+        motorSpeed(M1, 70);
+        motorSpeed(M4, 50);
 
         motorOn(M1, FORWARD);
         motorOn(M4, REVERSE);
@@ -215,7 +214,7 @@ void InterseccionesSinCarga()
         do {
           qtrrc.read(IR);
           motorSpeed(M1, 80);
-          motorSpeed(M4, 60);
+          motorSpeed(M4, 50);
           motorOn(M1, FORWARD);
           motorOn(M4, REVERSE);
         } while (IR[5] < 300 && IR[4] < 300);
@@ -260,6 +259,8 @@ void InterseccionesSinCarga()
 
         digitalWrite(led, HIGH);
         forward = forward;
+        motorsOff(M1,M4);
+        delay(400);        
         motorSpeed(M1, 70);
         motorSpeed(M4, 70);
         goForward(M1, M4);
@@ -285,7 +286,7 @@ void InterseccionesSinCarga()
 
     }
   }
-  else if (IR[2] > 300 && IR[0] > 300 && ContadorInterseccion == 3)
+  else if (IR[2] > 370 && IR[0] > 370 && ContadorInterseccion == 3)
   {
 
     motorSpeed(M1, 70);
@@ -396,7 +397,7 @@ void InterseccionesConCarga()
   qtrrc.read(IR); // read raw sensor values
 
   //if (IR[4] > 100 && IR[3] > 100)
-  if (IR[5] > 300 && IR[3] > 300)
+  if (IR[5] > 500 && IR[3] > 500)
   {
     ContadorInterseccion += 1;
 
@@ -406,10 +407,10 @@ void InterseccionesConCarga()
       case 1:
         digitalWrite(led, HIGH);
         forward = forward;
-        motorSpeed(M1, 70);
-        motorSpeed(M4, 70);
+        motorSpeed(M1, 80);
+        motorSpeed(M4, 80);
         goForward(M1, M4);
-        delay(170);
+        delay(180);
         do {
           motorSpeed(M1, 80);
           motorSpeed(M4, 80);
@@ -426,7 +427,7 @@ void InterseccionesConCarga()
         motorsOff(M1, M4);
         delay(200);
 
-        motorSpeed(M1, 70);
+        motorSpeed(M1, 80);
         motorSpeed(M4, 50);
 
         motorOn(M1, FORWARD);
