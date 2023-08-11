@@ -59,7 +59,7 @@ void loop()
 
   if (sensorVal == HIGH) {
 
-    forward = 70;
+    forward = 60;
 
     ControlSalidas();
     InterseccionesSinCarga();
