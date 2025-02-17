@@ -1,13 +1,16 @@
 # PID Innobot
 
 ## Índice
+
 1. [PID](#pid)
     1. [QTR](#qtr)
     2. [Variables](#variables)
 2. [Motores](#motores)
 
 ## PID
+
 ### QTR
+
 Utiliza la librería [QTR Sensors by Pololu](https://github.com/pololu/qtr-sensors-arduino) en su versión 3.0.
 
 ![Sensor QTR](https://i.postimg.cc/s2yjDdMg/qtr8.png)
@@ -28,8 +31,11 @@ float i = 0;  // Variable integral del PID
 float p_old = 0;  // Valor anterior de la variable p
 int u;  // Variable de control del PID
 ```
+
 ---
+
 ## Motores
+
 A continuación se describe la ubicación de los motores y se proporcionan los códigos necesarios para que estos funcionen en [Pygmalion IDE](https://pygmalion.tech/software/).
 
 Cuando el código esté separado por `/*----------------------------*/`, indica que hay dos o más formas de realizar la misma acción.
@@ -86,6 +92,8 @@ turnRight(M4, M1);
 motorOn(M1, REVERSE);
 motorOn(M4, FORWARD);
 ```
+
 ---
-> "Los que dicen que es imposible no deberían molestar ni interrumpir a los que lo estamos haciendo"
+
+> "Los que dicen que es imposible no deberían molestar ni interrumpir a los que lo estamos haciendo" <br>
 > Thomas Alva Edinson
